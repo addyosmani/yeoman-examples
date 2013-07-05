@@ -1,0 +1,20 @@
+<div class="hero-unit">
+
+ <p><h2>Todos</h2></p>
+  
+ <div ui-sortable>
+  <p ng-repeat="todo in todos">
+  	<input type="text" ng-model="todo">
+  	<a class="btn" ng-click="removeTodo($index)">X</a>
+  </p>
+  </div>
+  
+  
+  <form ng-submit="addTodo()">
+  	<div class="controls form-inline">
+  		<input type="text" ng-model="todo" size="20">
+  		<input type="submit" class="btn btn-primary" value="Add">
+  	</div>
+  </form>
+
+</div>

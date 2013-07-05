@@ -1,0 +1,21 @@
+{
+  "name": "angular-local-storage",
+  "description": "An Angular module that gives you access to the browsers local storage",
+  "version": "0.0.0",
+  "main": "./angular-local-storage.js",
+  "author": {
+    "name": "Gregory Pike"
+  },
+  "dependencies": {
+    "angular": "1.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jjperezaguinaga/bower-angular-local"
+  },
+  "gitHead": "5c3f02fb41da07a4528797412b06b1f6f0edf4cf",
+  "readme": "angular-local-storage\n=====================\n\nAn Angular module that gives you access to the browsers local storage\n\nRemember to set your app name (settings.appPrefix) in the settings at the beginning of localStorageModule.js.\n\nTo do:\n- Add tests\n- Expand Readme\n\nExample use: \n\n```javascript\nangular.module('yourModule', ['LocalStorageModule'])\n.controller('yourCtrl', [\n  '$scope',\n  'localStorageService',\n  function($scope, localStorageService) {\n    // Start fresh\n    localStorageService.clearAll();\n    localStorageService.add('Favorite Sport','Ultimate Frisbee');\n}]);\n```\nCheck out the full demo and documentation at http://gregpike.net/demos/angular-local-storage/demo.html",
+  "readmeFilename": "README.md",
+  "_id": "angular-local-storage@0.0.1",
+  "commit": "5c3f02fb41da07a4528797412b06b1f6f0edf4cf"
+}
