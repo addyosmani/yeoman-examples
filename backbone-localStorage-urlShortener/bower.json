@@ -1,11 +1,12 @@
 {
-  "name": "backbone",
+  "name": "yeah-5937",
   "version": "0.0.0",
   "dependencies": {
     "jquery": "~1.9.0",
     "underscore": "~1.4.3",
     "backbone": "~1.0.0",
-    "modernizr": "~2.6.2"
+    "modernizr": "~2.6.2",
+    "backbone.localStorage": "~1.1.6"
   },
   "devDependencies": {}
 }
