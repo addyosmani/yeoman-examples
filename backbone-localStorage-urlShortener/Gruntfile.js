@@ -1,5 +1,6 @@
 'use strict';
-var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
+var LIVERELOAD_PORT = 35729;
+var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
 var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
@@ -24,9 +25,9 @@ module.exports = function (grunt) {
     grunt.initConfig({
         yeoman: yeomanConfig,
         watch: {
-            coffee: {
-                files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
-                tasks: ['coffee:dist']
+            options: {
+                nospawn: true,
+                livereload: true
             },
             coffeeTest: {
                 files: ['test/spec/{,*/}*.coffee'],
@@ -37,19 +38,25 @@ module.exports = function (grunt) {
                 tasks: ['compass']
             },
             livereload: {
+                options: {
+                    livereload: LIVERELOAD_PORT
+                },
                 files: [
                     '<%= yeoman.app %>/*.html',
                     '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
                     '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
-                ],
-                tasks: ['livereload']
+                ]
             },
             jst: {
                 files: [
                     '<%= yeoman.app %>/scripts/templates/*.ejs'
                 ],
                 tasks: ['jst']
+            },
+            neuter: {
+                files: ['{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.{js,coffee}'],
+                tasks: ['coffee:dist', 'neuter']
             }
         },
         connect: {
@@ -64,7 +71,7 @@ module.exports = function (grunt) {
                         return [
                             lrSnippet,
                             mountFolder(connect, '.tmp'),
-                            mountFolder(connect, 'app')
+                            mountFolder(connect, yeomanConfig.app)
                         ];
                     }
                 }
@@ -74,7 +81,8 @@ module.exports = function (grunt) {
                     middleware: function (connect) {
                         return [
                             mountFolder(connect, '.tmp'),
-                            mountFolder(connect, 'test')
+                            mountFolder(connect, 'test'),
+                            mountFolder(connect, yeomanConfig.app)
                         ];
                     }
                 }
@@ -83,7 +91,7 @@ module.exports = function (grunt) {
                 options: {
                     middleware: function (connect) {
                         return [
-                            mountFolder(connect, 'dist')
+                            mountFolder(connect, yeomanConfig.dist)
                         ];
                     }
                 }
@@ -124,7 +132,7 @@ module.exports = function (grunt) {
                     // require them into your main .coffee file
                     expand: true,
                     cwd: '<%= yeoman.app %>/scripts',
-                    src: '*.coffee',
+                    src: '{,*/}*.coffee',
                     dest: '.tmp/scripts',
                     ext: '.js'
                 }]
@@ -144,23 +152,14 @@ module.exports = function (grunt) {
                 cssDir: '.tmp/styles',
                 imagesDir: '<%= yeoman.app %>/images',
                 javascriptsDir: '<%= yeoman.app %>/scripts',
-                importPath: 'app/bower_components',
+                fontsDir: '<%= yeoman.app %>/styles/fonts',
+                importPath: '<%= yeoman.app %>/bower_components',
                 relativeAssets: true
             },
             dist: {},
             server: {
                 options: {
                     debugInfo: true
-                }
-            }
-        },
-        uglify: {
-            dist: {
-                files: {
-                    '<%= yeoman.dist %>/scripts/main.js': [
-                        '<%= yeoman.app %>/scripts/{,*/}*.js',
-                        '.tmp/scripts/templates.js'
-                    ],
                 }
             }
         },
@@ -244,10 +243,26 @@ module.exports = function (grunt) {
                     '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/*.ejs']
                 }
             }
+        },
+        rev: {
+            dist: {
+                files: {
+                    src: [
+                        '<%= yeoman.dist %>/scripts/{,*/}*.js',
+                        '<%= yeoman.dist %>/styles/{,*/}*.css',
+                        '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
+                        '<%= yeoman.dist %>/styles/fonts/*'
+                    ]
+                }
+            }
+        },
+        neuter: {
+            app: {
+                src: '{.tmp,<%= yeoman.app %>}/scripts/main.js',
+                dest: '.tmp/scripts/combined-scripts.js'
+            }
         }
     });
-
-    grunt.renameTask('regarde', 'watch');
 
     grunt.registerTask('createDefaultTemplate', function () {
         grunt.file.write('.tmp/scripts/templates.js', 'this.JST = this.JST || {};');
@@ -263,8 +278,8 @@ module.exports = function (grunt) {
             'coffee:dist',
             'createDefaultTemplate',
             'jst',
+            'neuter:app',
             'compass:server',
-            'livereload-start',
             'connect:livereload',
             'open',
             'watch'
@@ -276,6 +291,7 @@ module.exports = function (grunt) {
         'coffee',
         'createDefaultTemplate',
         'jst',
+        'neuter:app',
         'compass',
         'connect:test',
         'mocha'
@@ -288,12 +304,14 @@ module.exports = function (grunt) {
         'jst',
         'compass:dist',
         'useminPrepare',
+        'neuter:app',
         'imagemin',
         'htmlmin',
         'concat',
         'cssmin',
         'uglify',
         'copy',
+        'rev',
         'usemin'
     ]);
 
