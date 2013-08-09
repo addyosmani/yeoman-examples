@@ -1,5 +1,5 @@
 {
-  "name": "yo-backbone-todo-app",
+  "name": "backbone-localStorage-todos",
   "version": "0.0.0",
   "dependencies": {
     "sass-bootstrap": "~2.3.0",
