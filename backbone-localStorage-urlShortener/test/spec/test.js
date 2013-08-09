@@ -1,11 +1,11 @@
 /*global describe, it */
 'use strict';
-(function () {
-    describe('Give it some context', function () {
-        describe('maybe a bit more context here', function () {
-            it('should run here few assertions', function () {
 
-            });
+(function () {
+    describe('Give a URL', function() {
+        it('should have a URL for Google Shortener API', function() {
+            var model = new backboneUrlShortener.Models.UrlModel();
+            expect(model.url).to.eql("https://www.googleapis.com/urlshortener/v1/url");
         });
     });
 })();
