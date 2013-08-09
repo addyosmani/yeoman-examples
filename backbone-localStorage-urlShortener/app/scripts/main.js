@@ -1,20 +1,29 @@
-/*global backbone, $*/
-'use strict';
+/*global backboneUrlShortener, $*/
 
-
-window.backbone = {
-    Models: {a:'s'},
+window.backboneUrlShortener = {
+    Models: {},
     Collections: {},
     Views: {},
     Routers: {},
     init: function () {
-        console.log('Hello from Backbone!');
+        var url = new backboneUrlShortener.Collections.UrlCollection();
 
-        new backbone.Routers.UrlRouter();
+        new backboneUrlShortener.Views.UrlView({
+            el: '#urls',
+            collection: url
+        }).render();
+
         Backbone.history.start();
     }
 };
 
+/* Order and include as you please. */
+require('.tmp/scripts/templates');
+require('app/scripts/views/*');
+require('app/scripts/models/*');
+require('app/scripts/collections/*');
+require('app/scripts/routes/*');
+
 $(document).ready(function () {
-    backbone.init();
+    backboneUrlShortener.init();
 });
