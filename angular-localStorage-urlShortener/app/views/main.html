@@ -1,0 +1,14 @@
+<div class="hero-unit">
+  <h1>'Allo, 'Allo!</h1>
+
+  <form ng-submit="submit()">
+    <input type="url" ng-model="long" placeholder="Enter URL to shorten" autofocus>
+    <button class="btn btn-primary">Shorten</button>
+  </form>
+
+  <ul>
+    <li ng-repeat="url in urls" class="animated-list">
+      <a href="{{ url.short }}">{{ url.short }}</a> ({{ url.long }})</a>
+    </li>
+  </ul>
+</div>
