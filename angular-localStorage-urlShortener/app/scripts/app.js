@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularLocalStorageUrlShortenerApp', ['ngResource', 'ngRoute'])
+angular.module('angularLocalStorageUrlShortenerApp', ['ngResource', 'ngRoute', 'ngStorage'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

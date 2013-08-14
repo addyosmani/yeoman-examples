@@ -8,10 +8,14 @@
     "bootstrap-sass": "~2.3.1",
     "es5-shim": "~2.0.8",
     "angular-resource": "1.2.0rc1",
-    "angular-route": "v1.2.0rc1"
+    "angular-route": "v1.2.0rc1",
+    "ngstorage": "~0.2.2"
   },
   "devDependencies": {
     "angular-mocks": "1.2.0rc1",
     "angular-scenario": "1.2.0rc1"
+  },
+  "resolutions": {
+    "angular": "1.2.0rc1"
   }
 }
