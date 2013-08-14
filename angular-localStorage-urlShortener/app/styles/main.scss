@@ -30,3 +30,29 @@ body {
     line-height: 1;
     letter-spacing: -1px;
 }
+
+.animated-list {
+    &.ng-enter, &.ng-leave, &.ng-move {
+        transition: all linear .5s;
+    }
+
+    &.ng-enter {
+        line-height: 0;
+        opacity: 0;
+
+        &.ng-enter-active {
+          line-height: 30px;
+          opacity: 1;
+        }
+    }
+
+    &.ng-leave {
+        opacity: 1;
+        line-height: 30px;
+
+        &.ng-leave-active {
+          opacity: 0;
+          line-height: 0;
+        }
+    }
+}

@@ -11,6 +11,7 @@ angular.module('angularLocalStorageUrlShortenerApp')
       UrlResource.save({
         longUrl: $scope.long
       }).$promise.then(function (data) {
+        $scope.long = '';
         $scope.urls.unshift({
           long: data.longUrl,
           short: data.id
