@@ -11,8 +11,8 @@ describe('Service: UrlResource', function () {
     UrlResource = _UrlResource_;
   }));
 
-  it('should do something', function () {
-    expect(!!UrlResource).toBe(true);
+  it('should have a save method', function () {
+    expect(!!UrlResource.save).toBe(true);
   });
 
 });
