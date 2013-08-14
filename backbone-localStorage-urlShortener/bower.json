@@ -6,7 +6,8 @@
     "underscore": "~1.4.3",
     "backbone": "~1.0.0",
     "modernizr": "~2.6.2",
-    "backbone.localStorage": "~1.1.6"
+    "backbone.localStorage": "~1.1.6",
+    "bootstrap": "~2.3.2"
   },
   "devDependencies": {}
 }
