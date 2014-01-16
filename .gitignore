@@ -4,3 +4,4 @@ dist
 .sass-cache
 app/bower_components
 .tmp/
+/angular-localStorage-todos/app/bower_components/

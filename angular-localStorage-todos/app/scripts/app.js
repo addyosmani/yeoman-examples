@@ -1,7 +1,13 @@
 'use strict';
 
-angular.module('testApp', ['ui', 'LocalStorageModule'])
-
+angular.module('mytodoApp', [
+  'ngCookies',
+  'ngResource',
+  'ngSanitize',
+  'ngRoute',
+  'ui',
+  'LocalStorageModule'
+])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -10,6 +16,5 @@ angular.module('testApp', ['ui', 'LocalStorageModule'])
       })
       .otherwise({
         redirectTo: '/'
-      })
-
+      });
   });

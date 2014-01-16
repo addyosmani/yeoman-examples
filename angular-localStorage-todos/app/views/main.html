@@ -1,20 +1,30 @@
-<div class="hero-unit">
+<div class="container">
+  <h2>My todos</h2>
 
- <p><h2>Todos</h2></p>
-  
- <div ui-sortable>
-  <p ng-repeat="todo in todos">
-  	<input type="text" ng-model="todo">
-  	<a class="btn" ng-click="removeTodo($index)">X</a>
-  </p>
-  </div>
-  
-  
-  <form ng-submit="addTodo()">
-  	<div class="controls form-inline">
-  		<input type="text" ng-model="todo" size="20">
-  		<input type="submit" class="btn btn-primary" value="Add">
-  	</div>
+  <!-- Todos input -->
+  <form role="form" ng-submit="addTodo()">
+    <div class="row">
+      <div class="input-group">
+        <input type="text" ng-model="todo" placeholder="What needs to be done?" class="form-control">
+        <span class="input-group-btn">
+          <input type="submit" class="btn btn-primary" value="Add">
+        </span>
+      </div>
+    </div>
   </form>
+  <p></p>
+
+<!-- Todos list -->
+<div ui-sortable>
+  <p class="input-group" ng-repeat="todo in todos" style="padding:5px 10px; cursor: move;">
+    <input class="input form-control" type="text" ng-model="todo">
+    <span class="input-group-btn">
+      <button class="btn btn-danger" ng-click="removeTodo($index)" aria-label="Remove">X</button>
+    </span>
+  </p>
+</div>
 
 </div>
+
+
+
