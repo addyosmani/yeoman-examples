@@ -5,3 +5,5 @@ dist
 app/bower_components
 .tmp/
 /angular-localStorage-todos/app/bower_components/
+
+.DS_Store
