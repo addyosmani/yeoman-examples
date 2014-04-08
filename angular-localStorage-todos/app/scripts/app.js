@@ -5,7 +5,7 @@ angular.module('mytodoApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ui',
+  'ui.sortable',
   'LocalStorageModule'
 ])
   .config(['localStorageServiceProvider', function(localStorageServiceProvider){
