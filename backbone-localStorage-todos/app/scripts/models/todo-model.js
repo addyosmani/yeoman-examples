@@ -1,16 +1,22 @@
 /*global backboneApp, Backbone*/
 
-backboneApp.Models.TodoModel = Backbone.Model.extend({
+(function(){
+	
+	'use strict';
+	
+	backboneApp.Models.TodoModel = Backbone.Model.extend({
 
-    defaults: {
-        title: '',
-        completed: false
-    },
+	    defaults: {
+	        title: '',
+	        completed: false
+	    },
 
-    toggle: function () {
-        this.save({
-            completed: !this.get('completed')
-        });
-    }
+	    toggle: function () {
+	        this.save({
+	            completed: !this.get('completed')
+	        });
+	    }
 
-});
+	});
+
+})();
