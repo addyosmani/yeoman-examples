@@ -8,13 +8,15 @@ angular.module('mytodoApp', [
   'ui.sortable',
   'LocalStorageModule'
 ])
-  .config(['localStorageServiceProvider', function(localStorageServiceProvider){
+  .config(['localStorageServiceProvider', '$routeProvider', function(localStorageServiceProvider, $routeProvider){
     localStorageServiceProvider.setPrefix('ls');
-  }])
-  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
+      .when('/about', {
+        templateUrl: 'views/about.html',
         controller: 'MainCtrl'
       })
       .otherwise({
