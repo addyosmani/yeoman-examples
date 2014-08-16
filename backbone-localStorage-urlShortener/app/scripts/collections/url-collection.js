@@ -1,18 +1,26 @@
 /*global backboneUrlShortener, Backbone*/
 
-backboneUrlShortener.Collections.UrlCollection = Backbone.Collection.extend({
+(function(){
 
-    cache: new Backbone.LocalStorage('urls'),
+	'use strict';
 
-    model: backboneUrlShortener.Models.UrlModel,
+	backboneUrlShortener.Collections.UrlCollection = Backbone.Collection.extend({
 
-    initialize: function () {
-        this.on('change', this.cacheUrl, this);
-        this.add(this.cache.findAll());
-    },
+	    cache: new Backbone.LocalStorage('urls'),
 
-    cacheUrl: function (model) {
-        this.cache.create(model);
-    }
+	    model: backboneUrlShortener.Models.UrlModel,
 
-});
+	    initialize: function () {
+	        this.on('change', this.cacheUrl, this);
+	        this.add(this.cache.findAll());
+	    },
+
+	    cacheUrl: function (model) {
+	        this.cache.create(model);
+	    }
+
+	});
+
+})();
+
+
