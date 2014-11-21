@@ -1,5 +1,5 @@
 {
-  "name": "yeah-5937",
+  "name": "backbone-localStorage-urlShortener",
   "version": "0.0.0",
   "dependencies": {
     "jquery": "~1.9.0",
