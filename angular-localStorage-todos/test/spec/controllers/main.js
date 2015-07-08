@@ -26,7 +26,7 @@ describe('Controller: MainCtrl', function () {
       expect(scope.todos.length).toBe(1);
     });
 
-  it('should add items to the list', function () {
+  it('should add then remove an item from the list', function () {
       scope.todo = 'Test 1';
       scope.addTodo();
       scope.removeTodo(0);
